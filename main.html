@@ -1,0 +1,977 @@
+Page: Vaghela Yagnadeepsinh C | Portfolio Cleanup ```html
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vaghela Yagnadeepsinh C | Creative Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style>
+      @import url("https://api.fontshare.com/v2/css?f[]=clash-grotesk@700,600,500&f[]=satoshi@400,500,700&display=swap");
+
+      :root {
+        --bg-color: #050505;
+        --neon-pink: #f967fb;
+        --neon-green: #53bc28;
+        --neon-blue: #60aed5;
+      }
+
+      body {
+        font-family: "Satoshi", sans-serif;
+        background-color: var(--bg-color);
+        color: white;
+        margin: 0;
+      }
+
+      .clash {
+        font-family: "Clash Grotesk", sans-serif;
+      }
+
+      #canvas-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      #tubes-canvas {
+        pointer-events: auto;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .neon-glow:hover {
+        box-shadow:
+          0 0 20px var(--neon-pink),
+          0 0 40px rgba(249, 103, 251, 0.2);
+        border-color: var(--neon-pink);
+        transform: translateY(-2px);
+      }
+
+      .text-glow {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      }
+
+      .status-dot {
+        box-shadow: 0 0 10px #83f36e;
+      }
+
+      .section-gradient {
+        background: linear-gradient(
+          to bottom,
+          rgba(5, 5, 5, 0) 0%,
+          rgba(5, 5, 5, 0.8) 10%,
+          rgba(5, 5, 5, 0.95) 50%,
+          rgba(5, 5, 5, 0.8) 90%,
+          rgba(5, 5, 5, 0) 100%
+        );
+      }
+
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="relative min-h-screen w-full flex flex-col">
+      <!-- 3D Canvas Background (Fixed) -->
+      <div id="canvas-container">
+        <canvas
+          id="tubes-canvas"
+          class="w-full h-full block cursor-crosshair"
+        ></canvas>
+      </div>
+
+      <!-- Navigation -->
+      <nav
+        class="fixed top-0 left-0 w-full p-8 md:p-12 flex justify-between items-start z-50 pointer-events-none"
+      >
+        <div class="flex flex-col gap-1 pointer-events-auto">
+          <a
+            href="#home"
+            id="nav-logo"
+            class="clash text-2xl font-bold tracking-tight text-white flex items-center gap-3"
+          >
+            <span
+              class="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center"
+            >
+              <iconify-icon
+                icon="lucide:code-2"
+                class="text-white"
+              ></iconify-icon>
+            </span>
+            VYC.
+          </a>
+          <p
+            class="text-[10px] uppercase tracking-[0.2em] text-white/40 ml-14 hidden sm:block"
+          >
+            Creative Technologist
+          </p>
+        </div>
+
+        <div class="flex flex-col items-end gap-6 pointer-events-auto">
+          <div class="flex flex-row items-center gap-6">
+            <div
+              class="hidden md:flex flex-row gap-8 text-xs font-medium uppercase tracking-widest text-white/50 bg-black/40 backdrop-blur-md px-8 py-4 rounded-full border border-white/10"
+            >
+              <a
+                href="#about"
+                id="nav-about"
+                class="hover:text-white transition-colors"
+                >About</a
+              >
+              <a
+                href="#skills"
+                id="nav-skills"
+                class="hover:text-white transition-colors"
+                >Skills</a
+              >
+              <a
+                href="#work"
+                id="nav-work"
+                class="hover:text-white transition-colors"
+                >Work</a
+              >
+              <a
+                href="#contact"
+                id="nav-contact"
+                class="hover:text-white transition-colors"
+                >Contact</a
+              >
+            </div>
+            <button
+              id="nav-menu-btn"
+              class="glass-card w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/10 transition-all active:scale-95 group md:hidden"
+            >
+              <iconify-icon
+                icon="lucide:menu"
+                class="text-xl group-hover:rotate-180 transition-transform duration-500"
+              ></iconify-icon>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <section
+        id="home"
+        class="relative z-10 w-full min-h-screen flex flex-col items-center justify-center text-center px-6"
+      >
+        <div class="space-y-4 mb-12">
+          <div class="flex items-center justify-center gap-2 mb-6">
+            <span
+              class="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] uppercase tracking-widest text-white/60 backdrop-blur-sm"
+            >
+              Based in Bhavnagar, IN
+            </span>
+          </div>
+
+          <h1
+            class="clash text-6xl md:text-9xl font-bold tracking-tighter leading-[0.9] text-white select-none"
+          >
+            FULL-STACK<br />DEVELOPER
+          </h1>
+
+          <p
+            class="max-w-xl mx-auto text-lg md:text-xl text-white/60 font-medium tracking-tight mt-6 select-none"
+          >
+            Crafting high-performance digital experiences where
+            <br class="hidden md:block" />
+            <span class="text-white italic">technical precision</span> meets
+            <span class="text-white italic">creative art</span>.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center gap-10 mt-4 pointer-events-auto">
+          <a
+            href="#work"
+            id="cta-view-work-hero"
+            class="neon-glow group relative px-10 py-5 bg-white text-black font-bold uppercase tracking-widest text-sm rounded-full transition-all flex items-center gap-3 overflow-hidden"
+          >
+            <span class="relative z-10">Explore Case Studies</span>
+            <iconify-icon
+              icon="lucide:arrow-right"
+              class="relative z-10 text-lg group-hover:translate-x-1 transition-transform"
+            ></iconify-icon>
+          </a>
+
+          <div class="flex items-center gap-8">
+            <a
+              href="https://github.com/YAGNADEEPSINH-4741"
+              id="hero-social-github"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white/40 hover:text-white transition-colors text-2xl"
+              ><iconify-icon icon="mdi:github"></iconify-icon
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/vaghelayagnadeepsinh/"
+              id="hero-social-linkedin"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white/40 hover:text-white transition-colors text-2xl"
+              ><iconify-icon icon="mdi:linkedin"></iconify-icon
+            ></a>
+            <a
+              href="mailto:yagnadeepsinh.4741@gmail.com"
+              id="hero-social-email"
+              class="text-white/40 hover:text-white transition-colors text-2xl"
+              ><iconify-icon icon="mdi:email"></iconify-icon
+            ></a>
+          </div>
+        </div>
+
+        <!-- Interaction Hint -->
+        <div
+          class="absolute bottom-12 flex flex-col items-center gap-4 opacity-40"
+        >
+          <div
+            class="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] font-medium"
+          >
+            <iconify-icon
+              icon="lucide:mouse-pointer-2"
+              class="animate-bounce"
+            ></iconify-icon>
+            <span>Move cursor • Click to randomize</span>
+          </div>
+          <div
+            class="w-px h-12 bg-gradient-to-b from-white/40 to-transparent"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Content Wrapper -->
+      <div class="relative z-20 w-full">
+        <!-- About Section -->
+        <section
+          id="about"
+          class="w-full py-32 px-6 flex flex-col items-center"
+        >
+          <div
+            class="max-w-4xl glass-card rounded-[3rem] p-12 md:p-20 text-center"
+          >
+            <h2
+              class="clash text-4xl md:text-6xl font-bold mb-8 tracking-tight"
+            >
+              Philosophy
+            </h2>
+            <p
+              class="text-xl md:text-2xl text-white/80 leading-relaxed font-light"
+            >
+              A developer with strong fundamentals focused on
+              <span class="text-[#60aed5] font-medium"
+                >full-stack development</span
+              >, problem-solving, and clean code. I'm passionate about building
+              scalable, user-friendly applications with a continuous learning
+              mindset and a drive for practical development excellence.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-14 h-14 rounded-2xl bg-[#f967fb]/10 flex items-center justify-center mb-4"
+                >
+                  <iconify-icon
+                    icon="lucide:zap"
+                    class="text-[#f967fb] text-2xl"
+                  ></iconify-icon>
+                </div>
+                <h3 class="font-bold uppercase tracking-widest text-xs mb-2">
+                  Performance
+                </h3>
+                <p class="text-white/40 text-sm">
+                  Optimized, fast, and responsive digital products.
+                </p>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-14 h-14 rounded-2xl bg-[#53bc28]/10 flex items-center justify-center mb-4"
+                >
+                  <iconify-icon
+                    icon="lucide:code"
+                    class="text-[#53bc28] text-2xl"
+                  ></iconify-icon>
+                </div>
+                <h3 class="font-bold uppercase tracking-widest text-xs mb-2">
+                  Clean Code
+                </h3>
+                <p class="text-white/40 text-sm">
+                  Maintainable, documented, and structured architecture.
+                </p>
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-14 h-14 rounded-2xl bg-[#60aed5]/10 flex items-center justify-center mb-4"
+                >
+                  <iconify-icon
+                    icon="lucide:users"
+                    class="text-[#60aed5] text-2xl"
+                  ></iconify-icon>
+                </div>
+                <h3 class="font-bold uppercase tracking-widest text-xs mb-2">
+                  User First
+                </h3>
+                <p class="text-white/40 text-sm">
+                  Design-driven development focused on empathy.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="w-full py-32 px-6">
+          <div class="max-w-7xl mx-auto">
+            <div
+              class="flex flex-col md:flex-row justify-between items-end gap-6 mb-16"
+            >
+              <div>
+                <span
+                  class="text-[#f967fb] font-bold uppercase tracking-[0.4em] text-xs"
+                  >Expertise</span
+                >
+                <h2
+                  class="clash text-5xl md:text-7xl font-bold tracking-tight mt-2"
+                >
+                  Technical Stack
+                </h2>
+              </div>
+              <p class="text-white/40 max-w-sm text-right">
+                A broad foundation in core programming and modern web
+                technologies.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Programming -->
+              <div
+                class="glass-card p-8 rounded-3xl border-l-4 border-l-[#f967fb]"
+              >
+                <div class="flex items-center gap-4 mb-6">
+                  <iconify-icon
+                    icon="lucide:terminal"
+                    class="text-3xl text-[#f967fb]"
+                  ></iconify-icon>
+                  <h3 class="clash text-2xl font-bold">Programming</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >C</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >C++</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >Python</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >Java</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm text-[#f967fb] font-medium"
+                    >JavaScript</span
+                  >
+                </div>
+              </div>
+
+              <!-- Web Dev -->
+              <div
+                class="glass-card p-8 rounded-3xl border-l-4 border-l-[#53bc28]"
+              >
+                <div class="flex items-center gap-4 mb-6">
+                  <iconify-icon
+                    icon="lucide:globe"
+                    class="text-3xl text-[#53bc28]"
+                  ></iconify-icon>
+                  <h3 class="clash text-2xl font-bold">Web Development</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >HTML5</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >CSS3</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >PHP</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >ASP.NET</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >Tailwind CSS</span
+                  >
+                </div>
+              </div>
+
+              <!-- Database -->
+              <div
+                class="glass-card p-8 rounded-3xl border-l-4 border-l-[#60aed5]"
+              >
+                <div class="flex items-center gap-4 mb-6">
+                  <iconify-icon
+                    icon="lucide:database"
+                    class="text-3xl text-[#60aed5]"
+                  ></iconify-icon>
+                  <h3 class="clash text-2xl font-bold">Database</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >SQL</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >PL/SQL</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-[#60aed5]/30 text-sm text-[#60aed5] font-medium"
+                    >Supabase</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >PostgreSQL</span
+                  >
+                </div>
+              </div>
+
+              <!-- Core Concepts -->
+              <div class="glass-card p-8 rounded-3xl">
+                <div class="flex items-center gap-4 mb-6">
+                  <iconify-icon
+                    icon="lucide:brain"
+                    class="text-3xl text-white/60"
+                  ></iconify-icon>
+                  <h3 class="clash text-2xl font-bold">Core Concepts</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >OOP</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >DSA</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-sm"
+                    >REST APIs</span
+                  >
+                </div>
+              </div>
+
+              <!-- Tools -->
+              <div class="glass-card p-8 rounded-3xl lg:col-span-2">
+                <div class="flex items-center gap-4 mb-6">
+                  <iconify-icon
+                    icon="lucide:wrench"
+                    class="text-3xl text-white/60"
+                  ></iconify-icon>
+                  <h3 class="clash text-2xl font-bold">Workflow & Tools</h3>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                  <div
+                    class="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10"
+                  >
+                    <iconify-icon icon="mdi:github"></iconify-icon>
+                    <span class="text-sm">Git & GitHub</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10"
+                  >
+                    <iconify-icon
+                      icon="simple-icons:visualstudiocode"
+                    ></iconify-icon>
+                    <span class="text-sm">VS Code</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10"
+                  >
+                    <iconify-icon icon="simple-icons:vercel"></iconify-icon>
+                    <span class="text-sm">Vercel Deployment</span>
+                  </div>
+                  <div
+                    class="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10"
+                  >
+                    <iconify-icon icon="lucide:box"></iconify-icon>
+                    <span class="text-sm">Postman</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Featured Project -->
+        <section id="work" class="w-full py-32 px-6">
+          <div class="max-w-7xl mx-auto">
+            <span
+              class="text-[#53bc28] font-bold uppercase tracking-[0.4em] text-xs"
+              >Showcase</span
+            >
+            <h2
+              class="clash text-5xl md:text-7xl font-bold tracking-tight mt-2 mb-16"
+            >
+              Featured Project
+            </h2>
+
+            <div
+              class="group relative overflow-hidden rounded-[3rem] glass-card flex flex-col lg:flex-row"
+            >
+              <div
+                class="lg:w-1/2 h-80 lg:h-auto bg-[#0a0a0a] relative overflow-hidden"
+              >
+                <!-- Visual Placeholder for App -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <iconify-icon
+                    icon="lucide:message-square"
+                    class="text-9xl text-white/5 animate-pulse"
+                  ></iconify-icon>
+                </div>
+                <div
+                  class="absolute inset-0 bg-gradient-to-tr from-[#53bc28]/20 to-transparent"
+                ></div>
+                <div
+                  class="absolute bottom-8 left-8 p-6 glass-card rounded-2xl"
+                >
+                  <div class="flex items-center gap-3 mb-2">
+                    <div class="w-3 h-3 rounded-full bg-[#53bc28]"></div>
+                    <span class="text-xs font-bold uppercase tracking-widest"
+                      >Real-time active</span
+                    >
+                  </div>
+                  <h4 class="text-sm font-medium">
+                    Supabase PostgreSQL Infrastructure
+                  </h4>
+                </div>
+              </div>
+              <div class="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-6">
+                  <span
+                    class="px-4 py-1 rounded-full border border-[#53bc28]/30 bg-[#53bc28]/10 text-[#53bc28] text-[10px] uppercase font-bold tracking-widest"
+                    >Real-Time Chat App</span
+                  >
+                </div>
+                <h3 class="clash text-4xl md:text-5xl font-bold mb-6">
+                  TalkPrivate
+                </h3>
+                <p class="text-white/60 text-lg leading-relaxed mb-10">
+                  A high-performance full-stack application featuring real-time
+                  messaging, a robust authentication system, and a mobile-first
+                  responsive UI. Built with a focus on clean professional Git
+                  workflows and continuous integration.
+                </p>
+                <ul class="space-y-4 mb-12">
+                  <li class="flex items-center gap-4 text-sm text-white/80">
+                    <iconify-icon
+                      icon="lucide:check-circle-2"
+                      class="text-[#53bc28]"
+                    ></iconify-icon>
+                    No-refresh real-time messaging core
+                  </li>
+                  <li class="flex items-center gap-4 text-sm text-white/80">
+                    <iconify-icon
+                      icon="lucide:check-circle-2"
+                      class="text-[#53bc28]"
+                    ></iconify-icon>
+                    PostgreSQL database via Supabase
+                  </li>
+                  <li class="flex items-center gap-4 text-sm text-white/80">
+                    <iconify-icon
+                      icon="lucide:check-circle-2"
+                      class="text-[#53bc28]"
+                    ></iconify-icon>
+                    CI/CD deployment pipeline on Vercel
+                  </li>
+                </ul>
+                <div class="flex gap-4">
+                  <a
+                    href="https://talkprivate.vercel.app/"
+                    id="project-view-demo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="px-8 py-4 bg-[#53bc28] text-black font-bold uppercase text-xs tracking-widest rounded-full hover:shadow-[0_0_30px_rgba(83,188,40,0.4)] transition-all"
+                    >Live Demo</a
+                  >
+                  <a
+                    href="#"
+                    id="project-view-code"
+                    class="px-8 py-4 bg-white/10 text-white font-bold uppercase text-xs tracking-widest rounded-full border border-white/20 hover:bg-white/20 transition-all"
+                    >Source Code</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Achievements & Education -->
+        <section class="w-full py-32 px-6 bg-black/40 backdrop-blur-3xl">
+          <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <!-- Achievements -->
+            <div>
+              <div class="flex items-center gap-4 mb-12">
+                <div
+                  class="w-12 h-12 rounded-full bg-[#fe8a2e]/20 flex items-center justify-center"
+                >
+                  <iconify-icon
+                    icon="lucide:award"
+                    class="text-[#fe8a2e] text-2xl"
+                  ></iconify-icon>
+                </div>
+                <h2 class="clash text-4xl font-bold tracking-tight">
+                  Achievements
+                </h2>
+              </div>
+              <div class="glass-card p-10 rounded-3xl relative overflow-hidden">
+                <div
+                  class="absolute -right-10 -top-10 text-9xl text-white/[0.02] font-black"
+                >
+                  01
+                </div>
+                <span
+                  class="px-3 py-1 rounded-full border border-[#fe8a2e]/30 bg-[#fe8a2e]/10 text-[#fe8a2e] text-[10px] uppercase font-bold tracking-widest mb-4 inline-block italic"
+                  >Hackathon Finalist</span
+                >
+                <h3 class="text-2xl font-bold mb-4">
+                  AI4DEV National Hackathon
+                </h3>
+                <p class="text-white/60 mb-6">
+                  Worked in a high-pressure team environment to architect and
+                  build an AI-based solution within strict time constraints.
+                </p>
+                <div class="flex items-center gap-6">
+                  <div class="flex flex-col">
+                    <span
+                      class="text-[10px] uppercase text-white/40 tracking-widest font-bold"
+                      >Focus</span
+                    >
+                    <span class="text-sm">AI Solutioning</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span
+                      class="text-[10px] uppercase text-white/40 tracking-widest font-bold"
+                      >Outcome</span
+                    >
+                    <span class="text-sm">National Finalist</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Education -->
+            <div>
+              <div class="flex items-center gap-4 mb-12">
+                <div
+                  class="w-12 h-12 rounded-full bg-[#60aed5]/20 flex items-center justify-center"
+                >
+                  <iconify-icon
+                    icon="lucide:graduation-cap"
+                    class="text-[#60aed5] text-2xl"
+                  ></iconify-icon>
+                </div>
+                <h2 class="clash text-4xl font-bold tracking-tight">
+                  Education
+                </h2>
+              </div>
+              <div class="space-y-6">
+                <div
+                  class="glass-card p-6 rounded-2xl flex justify-between items-center group hover:bg-white/[0.05] transition-colors"
+                >
+                  <div>
+                    <h3 class="font-bold text-lg">
+                      BCA (Computer Applications)
+                    </h3>
+                    <p class="text-white/40 text-sm italic">2023 – 2026</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="clash text-3xl font-bold text-[#60aed5]"
+                      >79.53%</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="glass-card p-6 rounded-2xl flex justify-between items-center group hover:bg-white/[0.05] transition-colors"
+                >
+                  <div>
+                    <h3 class="font-bold text-lg">12th Standard</h3>
+                    <p class="text-white/40 text-sm italic">Board Exams</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="clash text-3xl font-bold text-white/60"
+                      >75%</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="glass-card p-6 rounded-2xl flex justify-between items-center group hover:bg-white/[0.05] transition-colors"
+                >
+                  <div>
+                    <h3 class="font-bold text-lg">10th Standard</h3>
+                    <p class="text-white/40 text-sm italic">Secondary School</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="clash text-3xl font-bold text-white/60"
+                      >69%</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Strengths -->
+        <section class="w-full py-32 px-6">
+          <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+              <span
+                class="text-[#f967fb] font-bold uppercase tracking-[0.4em] text-xs"
+                >Why Me?</span
+              >
+              <h2
+                class="clash text-5xl md:text-7xl font-bold tracking-tight mt-2"
+              >
+                Core Strengths
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div
+                class="p-10 rounded-[2.5rem] bg-gradient-to-br from-white/5 to-transparent border border-white/10"
+              >
+                <iconify-icon
+                  icon="lucide:user-check"
+                  class="text-4xl text-[#f967fb] mb-6"
+                ></iconify-icon>
+                <h3 class="clash text-2xl font-bold mb-4">
+                  Independent Builder
+                </h3>
+                <p class="text-white/50">
+                  Capable of architecting and building complete full-stack
+                  applications from scratch independently.
+                </p>
+              </div>
+              <div
+                class="p-10 rounded-[2.5rem] bg-gradient-to-br from-white/5 to-transparent border border-white/10"
+              >
+                <iconify-icon
+                  icon="lucide:layers"
+                  class="text-4xl text-[#53bc28] mb-6"
+                ></iconify-icon>
+                <h3 class="clash text-2xl font-bold mb-4">
+                  Modular Architecture
+                </h3>
+                <p class="text-white/50">
+                  Writes clean, modular, and well-documented code that is built
+                  for scale and collaboration.
+                </p>
+              </div>
+              <div
+                class="p-10 rounded-[2.5rem] bg-gradient-to-br from-white/5 to-transparent border border-white/10"
+              >
+                <iconify-icon
+                  icon="lucide:search-code"
+                  class="text-4xl text-[#60aed5] mb-6"
+                ></iconify-icon>
+                <h3 class="clash text-2xl font-bold mb-4">Problem Solver</h3>
+                <p class="text-white/50">
+                  Strong analytical thinking applied to complex algorithmic
+                  challenges and technical roadblocks.
+                </p>
+              </div>
+              <div
+                class="p-10 rounded-[2.5rem] bg-gradient-to-br from-white/5 to-transparent border border-white/10"
+              >
+                <iconify-icon
+                  icon="lucide:git-branch"
+                  class="text-4xl text-white/60 mb-6"
+                ></iconify-icon>
+                <h3 class="clash text-2xl font-bold mb-4">
+                  Professional Workflow
+                </h3>
+                <p class="text-white/50">
+                  Follows industry-standard Git workflows and proper development
+                  life cycle practices.
+                </p>
+              </div>
+              <div
+                class="p-10 rounded-[2.5rem] bg-gradient-to-br from-white/5 to-transparent border border-white/10"
+              >
+                <iconify-icon
+                  icon="lucide:message-circle"
+                  class="text-4xl text-white/60 mb-6"
+                ></iconify-icon>
+                <h3 class="clash text-2xl font-bold mb-4">Trilingual</h3>
+                <p class="text-white/50">
+                  Fluent in Gujarati, Hindi, and Professional English for
+                  seamless team and client collaboration.
+                </p>
+              </div>
+              <div
+                class="p-10 rounded-[2.5rem] bg-gradient-to-br from-[#f967fb]/5 to-transparent border border-[#f967fb]/20 flex flex-col justify-center items-center text-center"
+              >
+                <h3 class="clash text-3xl font-bold text-white mb-2 italic">
+                  Not just a student.
+                </h3>
+                <p
+                  class="text-[#f967fb] font-bold uppercase tracking-widest text-xs"
+                >
+                  A Developer.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <footer id="contact" class="w-full py-32 px-6 relative">
+          <div class="max-w-4xl mx-auto text-center">
+            <h2
+              class="clash text-6xl md:text-8xl font-bold mb-12 tracking-tight"
+            >
+              Let's Connect
+            </h2>
+
+            <div
+              class="flex flex-col md:flex-row gap-6 justify-center items-center mb-20"
+            >
+              <a
+                href="mailto:yagnadeepsinh.4741@gmail.com"
+                id="footer-email-btn"
+                class="w-full md:w-auto px-10 py-6 glass-card rounded-full flex items-center justify-center gap-4 hover:bg-white/10 transition-all"
+              >
+                <iconify-icon
+                  icon="lucide:mail"
+                  class="text-2xl"
+                ></iconify-icon>
+                <span class="font-bold tracking-widest uppercase text-sm"
+                  >Email Me</span
+                >
+              </a>
+              <a
+                href="https://www.linkedin.com/in/vaghelayagnadeepsinh/"
+                id="footer-linkedin-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full md:w-auto px-10 py-6 bg-white text-black rounded-full flex items-center justify-center gap-4 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all"
+              >
+                <iconify-icon
+                  icon="mdi:linkedin"
+                  class="text-2xl"
+                ></iconify-icon>
+                <span class="font-bold tracking-widest uppercase text-sm"
+                  >LinkedIn</span
+                >
+              </a>
+            </div>
+
+            <div class="flex justify-center gap-12 mb-20">
+              <a
+                href="https://github.com/YAGNADEEPSINH-4741"
+                id="social-github-footer"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-white/30 hover:text-white transition-colors text-3xl"
+                ><iconify-icon icon="mdi:github"></iconify-icon
+              ></a>
+            </div>
+
+            <div
+              class="pt-20 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6"
+            >
+              <p class="text-white/30 text-xs uppercase tracking-[0.3em]">
+                &copy; 2024 Vaghela Yagnadeepsinh C
+              </p>
+              <div
+                class="flex items-center gap-3 px-5 py-3 glass-card rounded-full border border-white/10"
+              >
+                <span class="relative flex h-2 w-2">
+                  <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+                  ></span>
+                  <span
+                    class="relative inline-flex rounded-full h-2 w-2 bg-[#83f36e]"
+                  ></span>
+                </span>
+                <span
+                  class="text-[10px] font-bold uppercase tracking-widest text-white/60"
+                  >Available for Projects</span
+                >
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Background Initialization Script -->
+    <script type="module">
+      const canvas = document.getElementById("tubes-canvas");
+      let tubesApp = null;
+
+      const getRandomColors = (count) => {
+        return Array.from(
+          { length: count },
+          () =>
+            "#" +
+            Math.floor(Math.random() * 16777215)
+              .toString(16)
+              .padStart(6, "0"),
+        );
+      };
+
+      try {
+        const module =
+          await import("https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js");
+        const TubesCursor = module.default;
+
+        tubesApp = TubesCursor(canvas, {
+          tubes: {
+            colors: ["#f967fb", "#53bc28", "#6958d5"],
+            lights: {
+              intensity: 300,
+              colors: ["#83f36e", "#fe8a2e", "#ff008a", "#60aed5"],
+            },
+          },
+        });
+
+        window.addEventListener("mousedown", () => {
+          if (tubesApp && tubesApp.tubes) {
+            const newTubesColors = getRandomColors(3);
+            const newLightsColors = getRandomColors(4);
+            tubesApp.tubes.setColors(newTubesColors);
+            tubesApp.tubes.setLightsColors(newLightsColors);
+          }
+        });
+      } catch (error) {
+        console.error("Failed to load TubesCursor background:", error);
+        document.body.style.background = "#050505";
+      }
+    </script>
+  </body>
+</html>
+```
